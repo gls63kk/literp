@@ -1,0 +1,830 @@
+/* Основные переменные */
+:root {
+    --primary-blue: #97a7ff;
+    --primary-pink: #fb2777;
+    --dark-bg: #0a0a0a;
+    --darker-bg: #050505;
+    --text-white: #ffffff;
+    --text-gray: #a0a0a0;
+    --gradient-bg: radial-gradient(circle at center, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+}
+
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-white);
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Загрузочный экран */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-bg);
+    transition: opacity 1s ease-out;
+}
+
+.loading-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('meta-bg.webp') center/cover no-repeat;
+    opacity: 0.3;
+    filter: blur(2px);
+}
+
+.eagle-container {
+    position: relative;
+    margin-bottom: 60px;
+    z-index: 2;
+}
+
+.eagle-logo {
+    width: 120px;
+    height: auto;
+    opacity: 0;
+    transform: scale(0.8) translateZ(0);
+    animation: eagleAppear 3s ease-out forwards;
+    filter: drop-shadow(0 0 20px rgba(151, 167, 255, 0.5));
+}
+
+.loading-text-container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.loading-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-white);
+    text-shadow: 0 0 20px rgba(151, 167, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+.loading-dots {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    animation: loadingDots 2s infinite;
+}
+
+/* Основной контент */
+.main-content {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    transition: opacity 1s ease-in;
+}
+
+.main-content.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
+}
+
+.page.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Страница со звездой */
+.star-page {
+    background: var(--gradient-bg);
+    position: relative;
+}
+
+.star-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('meta-bg.webp') center/cover no-repeat;
+    opacity: 0.2;
+    filter: blur(1px);
+}
+
+.star-container {
+    position: relative;
+    margin-bottom: 80px;
+    z-index: 2;
+}
+
+.star-logo {
+    width: 100px;
+    height: auto;
+    opacity: 0;
+    transform: scale(0.5) rotate(-180deg);
+    animation: starAppear 2s ease-out forwards;
+    filter: drop-shadow(0 0 25px rgba(151, 167, 255, 0.7));
+}
+
+.star-2 {
+    position: absolute;
+    top: -20px;
+    left: 60px;
+    width: 60px;
+    animation-delay: 0.5s;
+    animation: starAppear2 2.5s ease-out forwards;
+}
+
+.story-text-container {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.story-text {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-white);
+    text-shadow: 0 0 15px rgba(151, 167, 255, 0.6);
+    line-height: 1.4;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Финальная страница */
+.final-page {
+    background: var(--gradient-bg);
+    position: relative;
+}
+
+.final-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('meta-bg.webp') center/cover no-repeat;
+    opacity: 0.15;
+}
+
+.final-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 20px;
+}
+
+.final-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-white);
+    text-shadow: 0 0 20px rgba(151, 167, 255, 0.8);
+    margin-bottom: 40px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.3;
+}
+
+.discord-section {
+    margin-top: 40px;
+}
+
+.discord-text {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-gray);
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(151, 167, 255, 0.4);
+}
+
+.discord-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--primary-blue), #7289da);
+    color: var(--text-white);
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(151, 167, 255, 0.3);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.discord-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(151, 167, 255, 0.5);
+    background: linear-gradient(135deg, #a8b5ff, #8fa3ff);
+}
+
+.discord-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.discord-button:hover .discord-icon {
+    transform: scale(1.1);
+}
+
+/* Футер */
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    z-index: 3;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.meta-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-pink);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.meta-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-text {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Анимации */
+@keyframes eagleAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateZ(0);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1) translateZ(10px);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.05) translateZ(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+    }
+}
+
+@keyframes starAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-180deg);
+    }
+    60% {
+        opacity: 0.8;
+        transform: scale(1.2) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes starAppear2 {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(180deg);
+    }
+    70% {
+        opacity: 0.9;
+        transform: scale(0.8) rotate(-10deg);
+    }
+    100% {
+        opacity: 0.7;
+        transform: scale(0.6) rotate(0deg);
+    }
+}
+
+@keyframes loadingDots {
+    0%, 20% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    80%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Эффект печатной машинки */
+.typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--primary-blue);
+    animation: typewriter 2s steps(40) forwards, blink 1s infinite;
+}
+
+.typewriter.no-cursor {
+    border-right: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .eagle-logo {
+        width: 80px;
+    }
+    
+    .star-logo {
+        width: 70px;
+    }
+    
+    .star-2 {
+        width: 40px;
+        top: -15px;
+        left: 40px;
+    }
+    
+    .loading-text, .loading-dots {
+        font-size: 2rem;
+    }
+    
+    .story-text {
+        font-size: 1.4rem;
+    }
+    
+    .final-text {
+        font-size: 1.6rem;
+    }
+    
+    .discord-text {
+        font-size: 1.2rem;
+    }
+    
+    .discord-button {
+        padding: 14px 28px;
+        font-size: 1.1rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .eagle-logo {
+        width: 60px;
+    }
+    
+    .star-logo {
+        width: 50px;
+    }
+    
+    .star-2 {
+        width: 30px;
+        top: -10px;
+        left: 30px;
+    }
+    
+    .loading-text, .loading-dots {
+        font-size: 1.5rem;
+    }
+    
+    .story-text {
+        font-size: 1.2rem;
+    }
+    
+    .final-text {
+        font-size: 1.4rem;
+    }
+    
+    .discord-text {
+        font-size: 1rem;
+    }
+    
+    .discord-button {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+}
+
+/* Скрытие элементов */
+.hidden {
+    display: none !important;
+}
+
+/* Стили для выделения текста */
+.highlight {
+    color: var(--primary-blue);
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(151, 167, 255, 0.8);
+    animation: highlightPulse 2s ease-in-out infinite;
+}
+
+@keyframes highlightPulse {
+    0%, 100% {
+        text-shadow: 0 0 15px rgba(151, 167, 255, 0.8);
+    }
+    50% {
+        text-shadow: 0 0 25px rgba(151, 167, 255, 1);
+    }
+}
+
+/* Стили для курсора печатной машинки */
+.typewriter-cursor {
+    display: inline-block;
+    background-color: var(--primary-blue);
+    width: 3px;
+    margin-left: 2px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Дополнительные эффекты для кнопок */
+.button-glow {
+    position: relative;
+    overflow: hidden;
+}
+
+.button-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.button-glow:hover::before {
+    left: 100%;
+}
+
+/* Эффекты частиц */
+.particle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Эффект свечения для элементов */
+.glow-effect {
+    filter: drop-shadow(0 0 20px rgba(151, 167, 255, 0.6));
+    transition: filter 0.3s ease;
+}
+
+.glow-effect:hover {
+    filter: drop-shadow(0 0 30px rgba(151, 167, 255, 0.9));
+}
+
+/* Анимация появления элементов */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Эффект размытия фона */
+.blur-background {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Градиентный текст */
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Анимация волны */
+.wave-animation {
+    position: relative;
+    overflow: hidden;
+}
+
+.wave-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(151, 167, 255, 0.1), transparent);
+    animation: wave 3s linear infinite;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Эффект голограммы */
+.hologram-effect {
+    position: relative;
+    background: linear-gradient(45deg, transparent 30%, rgba(151, 167, 255, 0.1) 50%, transparent 70%);
+    background-size: 20px 20px;
+    animation: hologramScan 4s linear infinite;
+}
+
+@keyframes hologramScan {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 20px 20px;
+    }
+}
+
+/* Эффект глитча */
+.glitch-effect {
+    position: relative;
+    animation: glitch 2s infinite;
+}
+
+.glitch-effect::before,
+.glitch-effect::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-effect::before {
+    animation: glitch-1 0.5s infinite;
+    color: #ff0000;
+    z-index: -1;
+}
+
+.glitch-effect::after {
+    animation: glitch-2 0.5s infinite;
+    color: #00ffff;
+    z-index: -2;
+}
+
+@keyframes glitch {
+    0%, 100% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+}
+
+@keyframes glitch-1 {
+    0%, 100% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-1px, 1px);
+    }
+    40% {
+        transform: translate(-1px, -1px);
+    }
+    60% {
+        transform: translate(1px, 1px);
+    }
+    80% {
+        transform: translate(1px, -1px);
+    }
+}
+
+@keyframes glitch-2 {
+    0%, 100% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(1px, -1px);
+    }
+    40% {
+        transform: translate(1px, 1px);
+    }
+    60% {
+        transform: translate(-1px, -1px);
+    }
+    80% {
+        transform: translate(-1px, 1px);
+    }
+}
+
+/* Эффект неонового свечения */
+.neon-glow {
+    text-shadow: 
+        0 0 5px var(--primary-blue),
+        0 0 10px var(--primary-blue),
+        0 0 15px var(--primary-blue),
+        0 0 20px var(--primary-blue);
+    animation: neonFlicker 2s infinite alternate;
+}
+
+@keyframes neonFlicker {
+    0%, 100% {
+        text-shadow: 
+            0 0 5px var(--primary-blue),
+            0 0 10px var(--primary-blue),
+            0 0 15px var(--primary-blue),
+            0 0 20px var(--primary-blue);
+    }
+    50% {
+        text-shadow: 
+            0 0 2px var(--primary-blue),
+            0 0 5px var(--primary-blue),
+            0 0 8px var(--primary-blue),
+            0 0 12px var(--primary-blue);
+    }
+}
+
+/* Эффект пульсации */
+.pulse-effect {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+/* Эффект вращения */
+.rotate-effect {
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Эффект плавающих элементов */
+.float-effect {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Плавные переходы для всех элементов */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Дополнительные эффекты для орла */
+.eagle-logo:hover {
+    transform: scale(1.05) translateZ(5px);
+    filter: drop-shadow(0 0 30px rgba(151, 167, 255, 0.8));
+}
+
+/* Дополнительные эффекты для звезд */
+.star-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 35px rgba(151, 167, 255, 0.9));
+}
+
+/* Анимация мигания для орла */
+@keyframes eagleBlink {
+    0%, 90%, 100% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 0.3;
+    }
+}
+
+.eagle-blink {
+    animation: eagleBlink 0.5s ease-in-out;
+}
+
+/* Анимация приближения орла */
+@keyframes eagleZoom {
+    0% {
+        transform: scale(1) translateZ(0);
+    }
+    50% {
+        transform: scale(1.3) translateZ(20px);
+    }
+    100% {
+        transform: scale(1) translateZ(0);
+    }
+}
+
+.eagle-zoom {
+    animation: eagleZoom 2s ease-in-out;
+}
