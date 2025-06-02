@@ -24,6 +24,11 @@ let isTyping = false;
 // Функция для эффекта печатной машинки
 function typeWriter(element, text, speed = 50) {
     return new Promise((resolve) => {
+        if (!element) {
+            resolve();
+            return;
+        }
+        
         isTyping = true;
         element.innerHTML = '';
         element.style.borderRight = '3px solid #97a7ff';
@@ -37,7 +42,9 @@ function typeWriter(element, text, speed = 50) {
                 clearInterval(timer);
                 // Убираем курсор через 1 секунду
                 setTimeout(() => {
-                    element.style.borderRight = 'none';
+                    if (element) {
+                        element.style.borderRight = 'none';
+                    }
                     isTyping = false;
                     resolve();
                 }, 1000);
@@ -49,6 +56,11 @@ function typeWriter(element, text, speed = 50) {
 // Функция для удаления текста
 function eraseText(element, speed = 30) {
     return new Promise((resolve) => {
+        if (!element) {
+            resolve();
+            return;
+        }
+        
         const text = element.innerHTML;
         element.style.borderRight = '3px solid #97a7ff';
         
@@ -59,7 +71,9 @@ function eraseText(element, speed = 30) {
                 i--;
             } else {
                 clearInterval(timer);
-                element.style.borderRight = 'none';
+                if (element) {
+                    element.style.borderRight = 'none';
+                }
                 resolve();
             }
         }, speed);
@@ -132,8 +146,8 @@ async function startStoryAnimation() {
         // Печатаем текст
         await typeWriter(storyText, storyTexts[i], 60);
         
-        // Ждем 2 секунды
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Ждем 3 секунды
+        await new Promise(resolve => setTimeout(resolve, 3000));
         
         // Стираем текст (кроме последнего)
         if (i < storyTexts.length - 1) {
@@ -145,7 +159,7 @@ async function startStoryAnimation() {
     // Переход к финальной странице
     setTimeout(() => {
         showFinalPage();
-    }, 2000);
+    }, 3000);
 }
 
 // Показ финальной страницы
@@ -153,11 +167,15 @@ function showFinalPage() {
     const starPage = document.getElementById('star-page');
     const finalPage = document.getElementById('final-page');
     
-    starPage.classList.remove('active');
+    if (starPage) {
+        starPage.classList.remove('active');
+    }
     
     setTimeout(() => {
-        finalPage.classList.add('active');
-        startFinalAnimation();
+        if (finalPage) {
+            finalPage.classList.add('active');
+            startFinalAnimation();
+        }
     }, 1000);
 }
 
@@ -165,14 +183,19 @@ function showFinalPage() {
 async function startFinalAnimation() {
     const finalText = document.getElementById('final-text');
     
+    if (!finalText) {
+        console.error('Final text element not found');
+        return;
+    }
+    
     for (let i = 0; i < finalTexts.length; i++) {
         currentFinalIndex = i;
         
         // Печатаем текст
         await typeWriter(finalText, finalTexts[i], 70);
         
-        // Ждем 2 секунды
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Ждем 3 секунды
+        await new Promise(resolve => setTimeout(resolve, 3000));
         
         // Стираем текст (кроме последнего)
         if (i < finalTexts.length - 1) {
@@ -190,6 +213,12 @@ async function startFinalAnimation() {
 // Показ Discord секции
 function showDiscordSection() {
     const discordSection = document.getElementById('discord-section');
+    
+    if (!discordSection) {
+        console.error('Discord section not found');
+        return;
+    }
+    
     discordSection.style.display = 'block';
     discordSection.style.opacity = '0';
     discordSection.style.transform = 'translateY(30px)';
