@@ -2,18 +2,21 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Lite</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Орел - постоянный элемент -->
+    <div class="eagle-container-global" id="eagle-global">
+        <img src="Group 27.png" alt="Eagle" class="eagle-logo" id="eagle">
+    </div>
+
     <!-- Загрузочный экран -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-background"></div>
-        <div class="eagle-container">
-            <img src="Group 27.png" alt="Eagle" class="eagle-logo" id="eagle">
-        </div>
         <div class="loading-text-container">
             <div class="loading-text" id="loading-text">Loading</div>
             <div class="loading-dots" id="loading-dots">...</div>
@@ -54,10 +57,29 @@
             <footer class="footer">
                 <div class="footer-content">
                     <div class="meta-logo">
-                        <svg viewBox="0 0 24 24" class="meta-icon">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                        <svg viewBox="0 0 200 50" class="meta-icon">
+                            <!-- Meta Network логотип в стиле оригинала -->
+                            <defs>
+                                <linearGradient id="metaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#97a7ff;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#97a7ff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Логотип символ -->
+                            <circle cx="15" cy="25" r="8" fill="url(#metaGradient)" opacity="0.9"/>
+                            <circle cx="35" cy="25" r="8" fill="url(#metaGradient)" opacity="0.7"/>
+                            <path d="M23 25 Q30 18 32 25 Q30 32 23 25" fill="url(#metaGradient)" opacity="0.8"/>
+                            
+                            <!-- Текст META NETWORK -->
+                            <text x="55" y="20" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="url(#textGradient)">META</text>
+                            <text x="55" y="35" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="url(#textGradient)">NETWORK</text>
                         </svg>
-                        <span>Meta Network</span>
                     </div>
                     <div class="footer-text">Сделано Lite RP</div>
                 </div>

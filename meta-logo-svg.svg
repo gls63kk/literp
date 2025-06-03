@@ -1,0 +1,10 @@
+{
+  "error": true,
+  "url": "https://metanetwork.gg/assets/logo.svg",
+  "statusCode": 404,
+  "statusMessage": "Page not found: /assets/logo.svg",
+  "message": "Page not found: /assets/logo.svg",
+  "data": {
+    "path": "/assets/logo.svg"
+  }
+}
